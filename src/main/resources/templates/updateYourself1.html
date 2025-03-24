@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Phone and Pin Form</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    form {
+        max-width: 300px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+<h2 style="text-align: center;">Enter Phone and PIN</h2>
+<form action="checkDetail" method="GET">
+  <label for="phone1">Phone Number (1):</label>
+  <input type="text" id="phone1" name="phone1" placeholder="Enter First phone number" required />
+
+  <label for="pin">PIN:</label>
+  <input type="password" id="pin" name="pin" placeholder="Enter PIN" required />
+
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>

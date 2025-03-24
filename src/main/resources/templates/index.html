@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust column size */
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect */
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Structured Information Layout */
+        .info-row {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .info-row span.label {
+            font-weight: bold;
+            color: #333;
+            width: 120px;
+        }
+
+        .info-row span.value {
+            color: #555;
+        }
+
+        .availability {
+            font-weight: bold;
+        }
+
+        .availability.available {
+            color: green;
+        }
+
+        .availability.not-available {
+            color: red;
+        }
+
+        /* Navbar Styling */
+.navbar {
+    background-color: #333; /* Dark background for the navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    position: sticky; /* Sticks to the top when scrolling */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Navbar Links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar a:hover {
+    background-color: #575757; /* Darker background on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Dropdown in Navbar */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    background-color: #4CAF50; /* Green button for dropdown */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Below the button */
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 300px;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.dropdown-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown content on hover */
+}
+
+
+    </style>
+</head>
+<body>
+<div>
+    <h1>Tradespersons are here!!!!!</h1>
+</div>
+
+
+<div class="navbar">
+
+    <div class="dropdown">
+        <button class="dropdown-btn">Filter</button>
+        <div class="dropdown-content">
+            <form action="filter" method="GET">
+                <label for="expertise">Expertise</label>
+                <input type="text" id="expertise" name="expertise" placeholder="Enter expertise" >
+                <label for="location">Location</label>
+                <input type="text" id="location" name="locality" placeholder="Enter location" >
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <a th:href=@{addYourself}>Add Yourself</a>
+    <a th:href=@{updateYourself1}>Update Yourself</a>
+</div>
+
+<div class="grid-container">
+    <div class="grid-item" th:each="item : ${objectList}">
+        <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value" th:text="${item.name}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Expertise:</span>
+            <span class="value" th:text="${item.expertise}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Locality:</span>
+            <span class="value" th:text="${item.locality}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Phone 1:</span>
+            <span class="value" th:text="${item.phone1}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Phone 2:</span>
+            <span class="value" th:text="${item.phone2}"></span>
+        </div>
+        <div class="info-row">
+            <span class="label">Availability:</span>
+            <span class="value availability" th:class="${item.availability == 'yes' ? 'available' : 'not-available'}"
+                  th:text="${item.availability == 'yes' ? 'Available' : 'Not Available'}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update Yourself</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    form {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h2>Change Details</h2>
+<form action="change" th:object="${object}" method="post">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" th:value="*{name}" required>
+
+  <label for="phone1">Phone 1</label>
+  <input type="text" id="phone1" name="phone1" th:value="*{phone1}" required>
+
+  <label for="phone2">Phone 2</label>
+  <input type="text" id="phone2" name="phone2" th:value="*{phone2}">
+
+  <label for="expertise">Expertise</label>
+  <input type="text" id="expertise" name="expertise" th:value="*{expertise}" required>
+
+  <label for="locality">Locality</label>
+  <input type="text" id="locality" name="locality" th:value="*{locality}" required>
+
+  <label for="pin">Enter a 4-digit pin:</label>
+  <input type="text" id="pin" name="pin" th:value="*{pin}" pattern="\d{4}" maxlength="4" required title="Please enter exactly 4 digits">
+
+  <label for="availability">Availability</label>
+  <select id="availability" name="availability" th:value="*{availability}" required>
+    <option value="yes" th:selected="*{availability == 'yes'}">Yes</option>
+    <option value="no" th:selected="*{availability == 'no'}">No</option>
+  </select>
+
+  <button type="submit">Update</button>
+</form>
+</body>
+</html>
