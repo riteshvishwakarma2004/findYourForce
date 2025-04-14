@@ -45,15 +45,17 @@
 </head>
 <body>
 <h2>New Registration</h2>
-<form  action="register" method="post">
+<form action="register" method="post">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" required>
 
     <label for="phone1">Phone 1</label>
-    <input type="text" id="phone1" name="phone1" required>
+    <input type="text" id="phone1" name="phone1" required pattern="\d{10}" maxlength="10"
+           title="Phone number must be exactly 10 digits">
 
     <label for="phone2">Phone 2</label>
-    <input type="text" id="phone2" name="phone2">
+    <input type="text" id="phone2" name="phone2" pattern="\d{10}" maxlength="10"
+           title="Phone number must be exactly 10 digits (if provided)">
 
     <label for="expertise">Expertise</label>
     <input type="text" id="expertise" name="expertise" required>
@@ -62,14 +64,8 @@
     <input type="text" id="locality" name="locality" required>
 
     <label for="pin">Enter a 4-digit pin:</label>
-    <input type="text"
-            id="pin"
-            name="pin"
-            pattern="\d{4}"
-            maxlength="4"
-            required
-            title="Please enter exactly 4 digits"
-    >
+    <input type="text" id="pin" name="pin" pattern="\d{4}" maxlength="4" required
+           title="Please enter exactly 4 digits">
 
     <label for="availability">Availability</label>
     <select id="availability" name="availability" required>
